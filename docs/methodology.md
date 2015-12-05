@@ -33,3 +33,7 @@ In a future iteration, I will include neighborhoods that are close to the succes
 
 # The Presentation
 1. Make substantial use of GIFs to demonstrate the Web App 
+
+# Stretch Possibilities
+1. Predict the chances of success
+    - This should not be that hard. Just need to make a predictor for the current level of success. 
