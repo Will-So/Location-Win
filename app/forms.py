@@ -6,7 +6,7 @@ from wtforms.validators import DataRequired
 
 class BusinessForm(Form):
     city = SelectField('What city would you like to start your business in?', validators=[DataRequired()],
-                       choices=[('nev', 'Nevada'), ('phil', 'Philidephia')])
+                       choices=[('nev', 'Las Vegas'), ('phil', 'Philidephia')])
     business = SelectField("What Business would you like to start?", validators=[DataRequired()],
                            choices=[('it', 'Italian'), ('thai', 'Thai')])
-    submit = SubmitField("Find my businesses")
+    more_details = SubmitField("More Details")
