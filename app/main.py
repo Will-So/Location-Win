@@ -12,11 +12,6 @@ pagedown = PageDown()
 
 db = SQLAlchemy()
 
-## Will proabably want to login later
-# login_manager = LoginManager()
-# login_manager.session_protection = 'strong'
-# login_manager.login_view = 'auth.login'
-
 app = Flask(__name__)
 bootstrap.init_app(app)
 pagedown.init_app(app)
@@ -37,6 +32,10 @@ def index():
 @app.route('/best_location')
 def best_location():
     return render_template('best_location.html')
+
+@app.route('/predictor')
+def predictor():
+    return render_template('predictor.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
