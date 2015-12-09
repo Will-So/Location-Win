@@ -1,0 +1,7 @@
+flask
+flask.ext.bootstrap
+sys
+numpy
+pandas
+sklearn
+scipy
