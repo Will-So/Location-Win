@@ -5,6 +5,21 @@
 
 {% block head %}
 {{ super() }}
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+  <script type=text/javascript>
+    $(function() {
+      $('a#calculate').bind('click', function() {
+        $.getJSON('/__handle_prediciton', {
+          a: $('input[name="a"]').val(),
+          b: $('input[name="b"]').val()
+        }, function(data) {
+          $("#result").text(data.result);
+        });
+        return false;
+      });
+    });
+  </script>
 {% endblock %}
 
 {% block page_content %}
@@ -14,9 +29,8 @@
 <div>
 </div>
 <div class="col-md-3">
-    {{ wtf.quick_form(form) }}
+    {{ wtf.quick_form(form)}}
 </div>
-
 
 <div class="col-md-9">
     <h2>Best Locations:</h2>
@@ -25,20 +39,23 @@
     <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
 
      <script type="text/javascript">
-         var map = L.map('map').setView([51.505, -0.09], 13);
+         var map = L.map('map').setView([36.1215, -115.1739], 11);
 
                  L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
 
-        L.marker([51.5, -0.09]).addTo(map)
-            .bindPopup('A pretty CSS3 popup.<br> Easily customizable.')
-            .openPopup();
+//        L.marker([51.5, -0.09]).addTo(map)
+//            .bindPopup('A pretty CSS3 popup.<br> Easily customizable.')
+//            .openPopup();
+
+         map.on('click', function(e) {
+            console.log(e.latlng);
+            });
      </script>
 </div>
      <p>Where Green is best and Red is worst</p>
 </div>
-
 
 
 {% if pagination %}
@@ -50,8 +67,6 @@
 
 {% block scripts %}
 {{ super() }}
-{{ pagedown.include_pagedown() }}
-
 
 
 {% endblock %}
