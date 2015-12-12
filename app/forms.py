@@ -28,12 +28,16 @@ categories = [('ameri', 'American'), ('arts', 'Arts & Entertainment'),
 
 secondary_categories = [('na', 'Nothing')] + categories
 
+cities = [('las', 'Las Vegas'), ('phoe', 'Phoenix'), ('char', 'Charlotte'),
+           ('pitt', 'Pittsburgh'), ('mont', 'Montréal'), ('scot', 'Scottsdale'),
+           ('edin', 'Edinburgh'), ('mesa', 'Mesa'), ('mont', 'Montreal'), ('temp', 'Tempe')]
+
 
 class BusinessForm(Form):
     city = SelectField('What city would you like to start your business in?', validators=[DataRequired()],
-                       choices=[('nev', 'Las Vegas'), ('phil', 'Philidephia')])
+                       choices=cities)
     business = SelectField("What Business would you like to start?", validators=[DataRequired()],
                            choices=categories)
     additional_category = SelectField("What else would you like your business to have?",
                                       choices=secondary_categories)
-    more_details = SubmitField("More Details")
+    more_details = SubmitField("Calculate")

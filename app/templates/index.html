@@ -37,8 +37,23 @@
  <div id="map">
 
     <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
-
      <script type="text/javascript">
+         // Load city coordinates:
+//        var coords = '{"Cities":' +
+//                '[{"las": [36.1662859, -115.149225]}, {"phoe": [33.4467681, -112.0756724]},' +
+//                ' {"char": [35.2270869, -80.8431268]}, {"pitt": [40.4416941, -79.9900861]},' +
+//                ' {"mont": [45.5115944, -73.6051013]}, {"scot": [33.5091215, -111.8992365]},' +
+//                ' {"edin": [55.9483544, -3.1931187]}, {"mesa": [33.436188, -111.586066076293]},' +
+//                ' {"mont": [45.5115944, -73.6051013]}, {"temp": [33.4144139, -111.9094473]}]}';
+
+          var coords = [{"city": "las", "coords": [36.1662859, -115.149225]}, {"city": "phoe", "coords": [33.4467681, -112.0756724]},
+                 {"city": "char", "coords": [35.2270869, -80.8431268]}, {"city": "pitt", "coords": [40.4416941, -79.9900861]},
+                 {"city": "mont", "coords": [45.5115944, -73.6051013]}, {"city": "scot", "coords": [33.5091215, -111.8992365]},
+                 {"city": "edin", "coords": [55.9483544, -3.1931187]}, {"city": "mesa", "coords": [33.436188, -111.586066076293]},
+                 {"city": "mont", "coords": [45.5115944, -73.6051013]}, {"city": "temp", "coords": [33.4144139, -111.9094473]}];
+
+//         var coords_obj = JSON.parse(coords);
+
          var map = L.map('map').setView([36.1215, -115.1739], 11);
 
                  L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
@@ -52,6 +67,18 @@
          map.on('click', function(e) {
             console.log(e.latlng);
             });
+
+    // Getting map navigation to work properl
+    document.getElementById('city').onclick = function(e) {
+        var pos = e.target.getAttribute('data-position');
+        var zoom = e.target.getAttribute('data-zoom');
+        if (pos && zoom) {
+            var loc = pos.split(',');
+            var z = parseInt(zoom);
+            map.setView(loc, z, {animation: true});
+            return false;
+    }
+}
      </script>
 </div>
      <p>Where Green is best and Red is worst</p>
