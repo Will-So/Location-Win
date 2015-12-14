@@ -28,9 +28,10 @@ categories = [('ameri', 'American'), ('arts', 'Arts & Entertainment'),
 
 secondary_categories = [('na', 'Nothing')] + categories
 
-cities = [('las', 'Las Vegas'), ('phoe', 'Phoenix'), ('char', 'Charlotte'),
-           ('pitt', 'Pittsburgh'), ('mont', 'Montréal'), ('scot', 'Scottsdale'),
-           ('edin', 'Edinburgh'), ('mesa', 'Mesa'), ('mont', 'Montreal'), ('temp', 'Tempe')]
+cities = [([36.1662859, -115.149225], 'Las Vegas'), ([33.4467681, -112.0756724], 'Phoenix'), ([35.2270869, -80.8431268], 'Charlotte'),
+           ([40.4416941, -79.9900861], 'Pittsburgh'), ([45.5115944, -73.6051013], 'Montréal'), ([33.5091215, -111.8992365], 'Scottsdale'),
+           ([55.9483544, -3.1931187], 'Edinburgh'), ([33.436188, -111.586066076293], 'Mesa'), ([45.5115944, -73.6051013], 'Montreal'),
+          ([33.4144139, -111.9094473], 'Tempe')]
 
 
 class BusinessForm(Form):
