@@ -12,12 +12,12 @@ bootstrap.init_app(app)
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY') or 'hard to guess string'
 
 
-@app.route('/')
+@app.route('/', methods=('POST', 'GET'))
 def index():
     form = BusinessForm()
-    if form.validate_on_submit():
-        vect = input_to_vector(form)
-        prediction = predict_success(vect)
+    # if form.validate_on_submit():
+    #     vect = input_to_vector(form)
+    #     prediction = predict_success(vect)
 
 
 
