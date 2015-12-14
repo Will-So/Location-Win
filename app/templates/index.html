@@ -38,47 +38,23 @@
 
     <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
      <script type="text/javascript">
-         // init funciton
-         (function (){
-                  var latlon = [];
-
-         })();
-         // Load city coordinates:
-
 
 
          var map = L.map('map').setView([36.1215, -115.1739], 11);
 
                  L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(map);
+         }).addTo(map);
 
-//        L.marker([51.5, -0.09]).addTo(map)
-//            .bindPopup('A pretty CSS3 popup.<br> Easily customizable.')
-//            .openPopup();
-         //get the clicked on location on the map.
-         map.on('click', function(e) {
-            console.log(e.latlng);
-             latlon = [e.latlng.lat, e.latlng.lng];
-            });
 
-    // Getting map navigation to work properl
-    document.getElementById('city').onclick = function(e) {
-        var pos = e.target.getAttribute('data-position');
-        var zoom = e.target.getAttribute('data-zoom');
-        if (pos && zoom) {
-            var loc = pos.split(',');
-            var z = parseInt(zoom);
-            map.panTo($(this).attr("value"));
-//            map.setView(new L.LatLng("value"))
-            return false;
-    }
-}
-         $('#city').on('click', function(e){
-             e.preventDefault();
-             console.log($(this).attr("value"))
-             map.panTo($(this).attr("value"));
-         })
+         $('#city').change(function(e){
+            e.preventDefault();
+            console.log(e)
+            var city = e.currentTarget[e.currentTarget.selectedIndex].value;
+            var city = JSON.parse(city);
+            map.panTo(city, 6);
+             });
+
      </script>
 </div>
      <p>Where Green is best and Red is worst</p>
