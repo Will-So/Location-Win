@@ -62,7 +62,14 @@ def input_to_vector(form, location):
 
 def predict_success(vect):
     """
-    Predicts the success of a
+    Predicts the success of a restaurant founded at a given locaiton
+    at a given restaurant type:
+
+    Steps
+    ---
+    1. Find the nearest neighbors from that area
+    2. Calculate the nearest neighbors
+    3. Make the feature space fit the training example
     :param vect:
     :return:
     """
