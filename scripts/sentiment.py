@@ -42,11 +42,12 @@ def clean_data(data):
     :return:
     """
     punctuation = punctuation.remove('!') # ! might be important to detemrine the value
-    for p in punctuation + ' ':
+    for p in punctuation:
         data.text = data.text.str.replace(p, '')
     data.text = data.text.str.lower()
 
     return data
+
 
 def transform_and_fit(data):
     vect = TfidfVectorizer()
