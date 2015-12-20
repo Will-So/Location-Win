@@ -13,6 +13,7 @@ from sklearn.pipeline import Pipeline
 from sklearn.svm import LinearSVC
 from sklearn.metrics import confusion_matrix
 
+# TODO Add code for getting most important features
 
 def _main():
     data = pd.read_hdf('../data/sentiment_data.hdf')
@@ -21,10 +22,7 @@ def _main():
 
 def get_text_and_labels(data):
     """
-
-    Returns
-    -------
-
+    Converts the star rating in `data` to either positive, negative, or neutral
     """
     data.loc[data.stars.isin([1,2]), 'target'] = -1
     data.loc[data.stars.isin([4,5]), 'target'] = 1
@@ -38,8 +36,6 @@ def clean_data(data):
     """
     When doing sentiment analysis, I will keep the stop words here as the
     relative frequency of stopwords may end up being important.
-    :param data:
-    :return:
     """
     punctuation = punctuation.remove('!') # ! might be important to detemrine the value
     for p in punctuation:
@@ -51,7 +47,6 @@ def clean_data(data):
 
 def transform_and_fit(data):
     vect = TfidfVectorizer()
-    X = vect.fit_transform(data.text)
     params = {"tfidf__ngram_range": [(1, 1), (1, 2)],
           "svc__C": [.01, .1, 1, 10, 100]}
 
@@ -69,9 +64,9 @@ def transform_and_fit(data):
 
 def plot_confusion_matrix(cm, data, title='Confusion matrix', cmap=plt.cm.Blues):
     """
-    Plots the function matrix given a confusion matrix.
+   Plots the function matrix given a confusion matrix
 
-    Data should be
+   Warning: Only works on this specific format of the data
     """
     plt.imshow(cm, interpolation='nearest', cmap=cmap)
     plt.title(title)
@@ -82,7 +77,3 @@ def plot_confusion_matrix(cm, data, title='Confusion matrix', cmap=plt.cm.Blues)
     plt.tight_layout()
     plt.ylabel('True label')
     plt.xlabel('Predicted label')
-
-
-def most_important_features(clf):
-    inds = np.argsort(clf.coef_[2, :])[-20:]
