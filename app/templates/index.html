@@ -5,9 +5,9 @@
 
 {% block head %}
 {{ super() }}
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
-  <script type=text/javascript>
+<script type=text/javascript>
     $(function() {
       $('a#calculate').bind('click', function() {
         $.getJSON('/__handle_prediciton', {
@@ -19,6 +19,8 @@
         return false;
       });
     });
+
+
   </script>
 {% endblock %}
 
@@ -52,8 +54,15 @@
             console.log(e)
             var city = e.currentTarget[e.currentTarget.selectedIndex].value;
             var city = JSON.parse(city);
-            map.panTo(city, 6);
+            map.panTo(city, 15);
              });
+
+                //get the clicked on location on the map.
+     map.on('click', function(e) {
+        console.log(e.latlng);
+         latlon = [e.latlng.lat, e.latlng.lng];
+         console.log(latlon);
+        });
 
      </script>
 </div>
